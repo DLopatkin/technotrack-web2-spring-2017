@@ -5,5 +5,7 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-
-    pass
+    fieldsets = (
+        ('User info', {'fields': (
+        'username', 'password', 'first_name', 'last_name', 'email', 'avatar', 'is_staff', 'is_superuser',)}),
+    )
