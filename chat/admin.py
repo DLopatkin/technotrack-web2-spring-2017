@@ -1,5 +1,18 @@
 from django.contrib import admin
 
-from chat.models import Chat
+from chat.models import Chat, UserChat, Message
 
-admin.site.register([Chat, ])
+
+@admin.register(Chat)
+class ChatAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(UserChat)
+class UserChatAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    pass

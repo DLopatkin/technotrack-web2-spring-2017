@@ -1,5 +1,13 @@
 from django.contrib import admin
 
-from friendship.models import Friendship, Friends
+from friendship.models import Friendship, Subscription
 
-admin.site.register([Friendship, Friends, ])
+
+@admin.register(Friendship)
+class FriendshipAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    pass

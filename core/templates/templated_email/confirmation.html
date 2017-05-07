@@ -1,0 +1,19 @@
+{% block subject %}
+    E-Mail!
+{% endblock %}
+
+{% block html %}
+    <h1>Hi, {{ user.username }} </h1>
+    <h2>Please, activate your account.</h2>
+    <a target="_blank" href={{ user.confirmation.get_absolute_url }}>
+     Activate!!!
+    </a>
+{% endblock %}
+
+{% block text %}
+    <h1>Hi, {{ user.username }} </h1>
+    <h2>Please, activate your account.</h2>
+    <a target="_blank" href={{user.confirmation.get_absolute_url}} >
+        Activate!!!
+    </a>
+{% endblock %}

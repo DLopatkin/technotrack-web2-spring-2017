@@ -31,6 +31,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TASK_SERIALIZER = 'json'
+
 
 # Application definition
 
@@ -42,12 +48,48 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'rest_framework',
+    'social_django',
+    'webpack_loader',
+    'templated_email',
     'core.apps.CoreConfig',
-    'ugc',
-    'like',
-    'chat',
-    'friendship',
+    'ugc.apps.UgcConfig',
+    'like.apps.LikeConfig',
+    'chat.apps.ChatConfig',
+    'friendship.apps.FriendshipConfig',
+    'feed.apps.FeedConfig',
 ]
+
+ADMINS = (
+    ('daniil95_95@mail.ru', 'Daniil Lopatkin'),
+)
+
+EMAIL_PORT = 1025
+TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
+TEMPLATED_EMAIL_AUTO_PLAIN = True
+TEMPLATED_EMAIL_FILE_EXTENSION = 'html'
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'build/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('vk', 'KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('vk', 'SECRET')
+
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email', ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,6 +105,7 @@ MIDDLEWARE = [
 INTERNAL_IPS = '127.0.0.1',
 
 AUTH_USER_MODEL = 'core.User'
+ACCOUNT_ACTIVATION_DAYS = 1
 
 ROOT_URLCONF = 'application.urls'
 
@@ -135,4 +178,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, '../collected_static/')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/Users/lopatkindaniil/Documents/Programming/mail_web/media'

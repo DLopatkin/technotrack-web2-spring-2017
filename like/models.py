@@ -1,11 +1,21 @@
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from core.models import Authored, Dated
-from ugc.models import Post
 
 
 class Like(Dated, Authored):
-    post = models.ForeignKey(Post, blank=False, related_name='post')
+    target_content_type = models.ForeignKey(ContentType)
+    target_id = models.PositiveIntegerField()
+    target = GenericForeignKey('target_content_type', 'target_id')
 
-    class Meta:
-        unique_together = ('author', 'post')
+
+class Likeable(models.Model):
+    likes = GenericRelation(
+        Like,
+        content_type_field='target_content_type',
+        object_id_field='target_id'
+    )
+
+

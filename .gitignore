@@ -1,2 +1,11 @@
 *.pyc
 .idea
+.rdb
+chat/migrations/
+core/migrations/
+feed/migrations/
+friendship/migrations/
+like/migrations/
+node_modules/
+static/
+ugc/migrations/

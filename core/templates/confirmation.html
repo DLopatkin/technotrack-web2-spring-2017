@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Confirmation!!!</title>
+</head>
+<body>
+
+     <div>
+        {% if expired %}
+            <h1 class="text-center"> Link expired.</h1>
+            <h1 class="text-center"> New link has been send to your e-mail.</h1>
+        {% else %}
+            {% if validator %}
+                <h1> Account confirmed!</h1>
+            {% else %}
+                <h1> Account confirmed already! </h1>
+            {% endif %}
+        {% endif %}
+    </div>
+
+</body>
+</html>

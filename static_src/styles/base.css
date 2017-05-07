@@ -1,0 +1,43 @@
+.list{
+  background-color: #f6fc8a;
+}
+.b-post{
+  margin: 1px;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: white;
+}
+.b-post-title{};
+.b-post-list{};
+.b-user-name{};
+.b-post-content{};
+.b-avatar{};
+.b-modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+}
+.b-modal {
+  position: fixed;
+  top: 50px;
+  right: 100px;
+  left: 100px;
+  bottom: 50px;
+  background-color: black;
+  opacity: 0.8;
+}
+
+.mydiv {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -9em;
+    margin-left: -15em; 
+    border: 1px solid #ccc;
+    background-color: #f3f3f3;
+}
